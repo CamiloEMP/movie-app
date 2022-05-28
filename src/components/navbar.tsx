@@ -1,14 +1,11 @@
 import { GiFilmSpool } from 'react-icons/gi'
 import { VscHome } from 'react-icons/vsc'
 
+import { Sidebar } from '../types/sidebar.type'
+
 import { LinkItem } from './link-item'
 
-interface Props {
-  isOpen: boolean
-  setIsOpen: (isOpen: boolean) => void
-}
-
-export const Navbar = ({ isOpen, setIsOpen }: Props) => {
+export const Navbar = ({ isOpen, setIsOpen }: Sidebar) => {
   function handleClick() {
     setIsOpen(!isOpen)
   }

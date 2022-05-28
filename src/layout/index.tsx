@@ -13,27 +13,27 @@ interface Props {
 export const Layout = ({ children, setIsOpen, isOpen }: Props) => {
   return (
     <section
-      className={`flex flex-col lg:flex-row mb-5 gap-5 min-h-screen ${
-        isOpen ? 'fixed inset-0 z-10 ' : ''
+      className={`relative flex flex-col md:flex-row mb-5 gap-5 min-h-screen ${
+        isOpen ? 'fixed inset-0' : 'relative'
       }`}
     >
       <aside
-        className={`fixed min-h-screen lg:static py-6 px-1 bg-brand-secondary transition-all lg:border-none ${
-          isOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
+        className={`fixed w-full min-h-screen md:static py-6 px-1 bg-brand-secondary transition-all md:border-none z-40 ${
+          isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         } `}
       >
-        <div className="lg:sticky lg:top-5">
+        <div className="md:sticky md:top-5">
           <Logo />
           <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
         <div
-          className="lg:hidden text-5xl rounded-tl-full rounded-bl-full absolute top-[42%] right-0 bg-brand-primary text-white cursor-pointer"
+          className="md:hidden text-5xl rounded-tl-full rounded-bl-full absolute top-[42%] right-0 bg-brand-primary text-white cursor-pointer z-50"
           onClick={() => setIsOpen(false)}
         >
           <FiChevronLeft className="py-2" />
         </div>
       </aside>
-      <aside>{children}</aside>
+      <aside className="w-full">{children}</aside>
     </section>
   )
 }

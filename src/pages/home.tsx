@@ -22,16 +22,14 @@ export const Home = () => {
     <>
       {loading && <div>Loading...</div>}
       {!loading && (
-        <section className="px-2">
+        <section className="px-6">
           <div className="flex flex-col max-w-screen-2xl">
-            <h2 className="bg-brand-primary py-4 text-center text-3xl font-bold text-white rounded-xl">
-              New Releases
-            </h2>
-            <section className="flex gap-4 mt-6 pb-6 overflow-x-auto  scrollbar-thumb-gray-400 scrollbar-track-gray-100 scrollbar-thin">
+            <h2 className="px-4 mt-8 text-3xl font-bold uppercase	">New Releases</h2>
+            <section className="flex gap-4 mt-6 pb-6 px-4 overflow-x-auto  scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thin">
               {newReleases.map(movie => (
                 <article
                   key={movie.id}
-                  className="flex-none w-[28rem] h-96 cursor-pointer hover:scale-105 transition-transform"
+                  className="flex-none w-80 md:w-96 cursor-pointer hover:scale-105 transition-transform"
                 >
                   <img
                     alt=""
@@ -42,7 +40,7 @@ export const Home = () => {
               ))}
             </section>
           </div>
-          <section className="flex flex-wrap justify-center gap-4 mt-14">
+          <section className="px-4 flex flex-wrap max-w-screen-2xl justify-center md:justify-start gap-4 mt-14">
             {movies.results.slice(5).map(movie => (
               <article
                 key={movie.id}
