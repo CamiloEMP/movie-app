@@ -10,7 +10,10 @@ module.exports = {
         'brand-secondary': '#fafafa',
         'modal-background': '#111111bd',
       },
+      variants: {
+        scrollbar: ['dark'],
+      },
     },
   },
-  plugins: [],
+  plugins: [require('tailwind-scrollbar')],
 }
