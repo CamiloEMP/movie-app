@@ -1,37 +1,20 @@
-import { useContext, useEffect } from 'react'
+import { useContext } from 'react'
 
 import { DataContext } from '../context/DataContext'
-import { Movie, Response } from '../types/moviejson.type'
+import { Response } from '../types/moviejson.type'
 
-export const useData = (cb: () => Promise<Response>) => {
-  const {
-    movieData,
-    setMovieData,
-    responseData,
-    setResponseData,
-    isLoading,
-    setIsLoading,
-    error,
-    setError,
-  } = useContext(DataContext)
+export const useData = () => {
+  const { responseData, setResponseData, isLoading, setIsLoading, error, setError } =
+    useContext(DataContext)
 
-  useEffect(() => {
-    async function getData() {
-      const data = await cb()
-
-      setResponseData(data)
-      setMovieData(data.results as Movie[])
-      setIsLoading(false)
-    }
-
-    getData()
-  }, [cb, setIsLoading, setError, setMovieData, setResponseData])
+  const setData = (data: Response) => setResponseData(data)
 
   return {
-    movieData,
     responseData,
+    setData,
     isLoading,
     error,
     setError,
+    setIsLoading,
   }
 }

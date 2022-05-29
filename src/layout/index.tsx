@@ -33,7 +33,7 @@ export const Layout = ({ children, setIsOpen, isOpen }: Props) => {
           <FiChevronLeft className="py-2" />
         </div>
       </aside>
-      <aside className="w-full">{children}</aside>
+      <aside className="w-full flex flex-col px-6">{children}</aside>
     </section>
   )
 }

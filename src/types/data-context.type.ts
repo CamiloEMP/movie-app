@@ -1,10 +1,8 @@
-import { Movie, Response } from './moviejson.type'
+import { Response } from './moviejson.type'
 
 export interface IDataContext {
-  movieData: Movie[]
-  setMovieData: (data: Movie[]) => void
   responseData: Response
-  setResponseData: (data: Response) => void
+  setResponseData: (newData: Response) => void
   isLoading: boolean
   setIsLoading: (isLoading: boolean) => void
   error: boolean
