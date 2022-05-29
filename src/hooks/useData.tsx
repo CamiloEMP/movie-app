@@ -1,18 +1,37 @@
 import { useContext, useEffect } from 'react'
 
 import { DataContext } from '../context/DataContext'
+import { Movie, Response } from '../types/moviejson.type'
 
-export const useData = (url: string) => {
-  const { data, setData, isLoading, setIsLoading, error, setError } = useContext(DataContext)
+export const useData = (cb: () => Promise<Response>) => {
+  const {
+    movieData,
+    setMovieData,
+    responseData,
+    setResponseData,
+    isLoading,
+    setIsLoading,
+    error,
+    setError,
+  } = useContext(DataContext)
 
   useEffect(() => {
-    fetch('https://yts.mx/api/v2/list_movies.json?limit=50')
-  }, [])
+    async function getData() {
+      const data = await cb()
+
+      setResponseData(data)
+      setMovieData(data.results as Movie[])
+      setIsLoading(false)
+    }
+
+    getData()
+  }, [cb, setIsLoading, setError, setMovieData, setResponseData])
 
   return {
-    data,
-    setData,
+    movieData,
+    responseData,
     isLoading,
     error,
+    setError,
   }
 }

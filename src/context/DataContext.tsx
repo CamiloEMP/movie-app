@@ -1,20 +1,32 @@
 import { createContext, ReactNode, useState } from 'react'
 
 import { IDataContext } from '../types/data-context.type'
-import { Movie } from '../types/moviejson.type'
+import { Movie, Response } from '../types/moviejson.type'
 
-export const DataContext = createContext<IDataContext>({} as IDataContext)
+export const DataContext = createContext<IDataContext>({
+  movieData: [],
+  responseData: {} as Response,
+  isLoading: false,
+  error: false,
+  setError: () => {},
+  setIsLoading: () => {},
+  setMovieData: () => {},
+  setResponseData: () => {},
+})
 
 export const DataProvider = ({ children }: { children: ReactNode }) => {
-  const [data, setData] = useState<Movie[]>([])
+  const [movieData, setMovieData] = useState<Movie[]>([])
+  const [responseData, setResponseData] = useState<Response>({} as Response)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState(false)
 
   return (
     <DataContext.Provider
       value={{
-        data,
-        setData,
+        movieData,
+        setMovieData,
+        responseData,
+        setResponseData,
         isLoading,
         setIsLoading,
         error,
