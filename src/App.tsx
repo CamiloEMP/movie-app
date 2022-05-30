@@ -2,22 +2,33 @@ import { useState } from 'react'
 import { Routes, Route } from 'react-router-dom'
 
 import { Header } from './components/header'
+import { Loader } from './components/loader'
 import { Modal } from './components/modal'
 import { MoviesCards } from './components/movies-cards'
 import { Layout } from './layout'
 import { Films } from './pages/films'
 import { Home } from './pages/home'
-import { Response } from './types/moviejson.type'
+import { Movie, Response } from './types/moviejson.type'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false)
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [movieSelected, setMovieSelected] = useState<Movie>({} as Movie)
   const [queryData, setDataQuery] = useState<Response>({} as Response)
   const [query, setQuery] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
+  const closeModal = () => {
+    setModalIsOpen(false)
+  }
+
+  const openModal = () => {
+    setModalIsOpen(true)
+  }
+
   return (
     <>
-      {/* <Modal /> */}
+      {modalIsOpen && <Modal movieSelected={movieSelected} onClose={closeModal} />}
       <Layout isOpen={isOpen} setIsOpen={setIsOpen}>
         <Header
           query={query}
@@ -26,12 +37,28 @@ function App() {
           setIsOpen={setIsOpen}
           setQuery={setQuery}
         />
-        {query.length > 0 ? (
-          <>{isLoading ? <div>Loading...</div> : <MoviesCards movieData={queryData?.results} />}</>
+        {query.length > 1 ? (
+          <>
+            {isLoading ? (
+              <Loader />
+            ) : (
+              <MoviesCards
+                movieData={queryData?.results}
+                setMovieSelected={setMovieSelected}
+                onOpenModal={openModal}
+              />
+            )}
+          </>
         ) : (
           <Routes>
-            <Route element={<Home />} path="/" />
-            <Route element={<Films />} path="/films" />
+            <Route
+              element={<Home setMovieSelected={setMovieSelected} onOpenModal={openModal} />}
+              path="/"
+            />
+            <Route
+              element={<Films setMovieSelected={setMovieSelected} onOpenModal={openModal} />}
+              path="/films"
+            />
           </Routes>
         )}
       </Layout>

@@ -4,6 +4,7 @@ import { VscHome } from 'react-icons/vsc'
 import { Sidebar } from '../types/sidebar.type'
 
 import { LinkItem } from './link-item'
+import Toggle from './theme-toggle'
 
 export const Navbar = ({ isOpen, setIsOpen }: Sidebar) => {
   function handleClick() {
@@ -15,16 +16,17 @@ export const Navbar = ({ isOpen, setIsOpen }: Sidebar) => {
       <section className="space-y-1">
         <LinkItem
           href="/"
-          icon={<VscHome className="text-2xl" />}
+          icon={<VscHome className="text-3xl" />}
           text="home"
           onClick={handleClick}
         />
         <LinkItem
           href="/films"
-          icon={<GiFilmSpool className="text-2xl" />}
+          icon={<GiFilmSpool className="text-3xl" />}
           text="films"
           onClick={handleClick}
         />
+        <Toggle />
       </section>
     </nav>
   )

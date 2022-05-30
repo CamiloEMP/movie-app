@@ -13,12 +13,12 @@ interface Props {
 export const Layout = ({ children, setIsOpen, isOpen }: Props) => {
   return (
     <section
-      className={`relative flex flex-col md:flex-row mb-5 gap-5 min-h-screen ${
+      className={`relative flex flex-col md:flex-row gap-5 min-h-screen bg-white dark:bg-black transition-colors ${
         isOpen ? 'fixed inset-0' : 'relative'
       }`}
     >
       <aside
-        className={`fixed w-full md:w-80 min-h-full md:static py-6 px-1 bg-brand-secondary transition-all md:border-none z-40 ${
+        className={`fixed w-full md:w-80 min-h-full md:static py-6 px-1 bg-brand-secondary dark:bg-neutral-900 md:dark:bg-modal-background transition-all md:border-none z-40 ${
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         } `}
       >

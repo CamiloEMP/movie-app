@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 
+import { Loader } from '../components/loader'
 import { MoviesCards } from '../components/movies-cards'
 import { useData } from '../hooks/useData'
 import { getMoviesApi } from '../services/movies.services'
-
-export const Films = () => {
+import { ModalActions } from '../types/modal.types'
+export const Films = ({ setMovieSelected, onOpenModal }: ModalActions) => {
   const { setData, responseData, setIsLoading, isLoading } = useData()
 
   useEffect(() => {
@@ -18,6 +19,16 @@ export const Films = () => {
   }, [setData, setIsLoading])
 
   return (
-    <>{isLoading ? <div>Loading...</div> : <MoviesCards movieData={responseData?.results} />}</>
+    <>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <MoviesCards
+          movieData={responseData?.results}
+          setMovieSelected={setMovieSelected}
+          onOpenModal={onOpenModal}
+        />
+      )}
+    </>
   )
 }

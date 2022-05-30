@@ -3,7 +3,7 @@ import dataJson from '../data/movies.json'
 import { Response } from '../types/moviejson.type'
 
 export const getMoviesJson = () => {
-  return dataJson as Response
+  return dataJson
 }
 
 export const getMoviesApi = async (): Promise<Response> => {
@@ -18,7 +18,7 @@ export const getMoviesApi = async (): Promise<Response> => {
 export const getMoviesByQuery = async (query: string): Promise<Response> => {
   const res = await fetch(
     `${BASE_URL}/search/movie?api_key=${API_KEY}&language=es&query=${
-      query || '%20no%20Y%C5%8D%20ni%20Kotoba%20ga%20Wakiagaru'
+      query || ''
     }&page=1&include_adult=false&year=2021`
   )
   const data = await res.json()

@@ -4,13 +4,16 @@ import { BrowserRouter } from 'react-router-dom'
 
 import App from './App'
 import { DataProvider } from './context/DataContext'
+import { ThemeProvider } from './context/theme-context'
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
       <DataProvider>
-        <App />
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
       </DataProvider>
     </BrowserRouter>
   </React.StrictMode>

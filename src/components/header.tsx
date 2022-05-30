@@ -13,23 +13,28 @@ interface Props extends Sidebar {
 export const Header = ({ setIsOpen, query, setQuery, setDataQuery, setIsLoading }: Props) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value)
-    getMoviesByQuery(query).then(data => {
-      setDataQuery(data)
-      setIsLoading(false)
-    })
+    if (query.length > 0) {
+      getMoviesByQuery(query).then(data => {
+        setDataQuery(data)
+        setIsLoading(false)
+      })
+    }
   }
 
   return (
-    <section className="mx-10 py-8 border-b-2 flex flex-col md:flex-row gap-4 md:justify-center">
+    <section className="px-4 py-8 border-b-2 dark:border-neutral-900 flex flex-col justify-start lg:flex-row gap-4 ">
       <div className="flex items-center gap-4">
-        <FiMenu className="text-3xl md:hidden cursor-pointer" onClick={() => setIsOpen(true)} />
-        <h1 className="text-4xl font-bold uppercase">search a film</h1>
+        <FiMenu
+          className="text-3xl md:hidden cursor-pointer dark:text-white"
+          onClick={() => setIsOpen(true)}
+        />
+        <h1 className="text-4xl font-bold uppercase dark:text-white">search a film</h1>
       </div>
-      <div className="flex items-center gap-2 w-full max-w-md px-4 py-2 border-2 rounded-full outline-none bg-gray-100 hover:border-black focus-visible:border-black">
+      <div className="flex items-center gap-2 w-full max-w-md px-4 py-2 border-2 rounded-full outline-none bg-gray-100 dark:bg-neutral-900 dark:border-neutral-900 dark:hover:border-neutral-700 hover:border-black focus-visible:border-black dark:text-white">
         <FiSearch className="text-xl" />
         <input
-          className="text-lg w-4/5 bg-inherit outline-none"
-          placeholder="Marvel"
+          className="text-lg w-full bg-inherit outline-none"
+          placeholder="More than two letters"
           type="text"
           value={query}
           onChange={handleChange}
