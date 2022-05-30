@@ -1,6 +1,8 @@
 import { ReactNode } from 'react'
 import { FiChevronLeft } from 'react-icons/fi'
+import { RiGithubLine, RiLinkedinBoxLine } from 'react-icons/ri'
 
+import { FooterNavbar } from '../components/footer-navbar'
 import Logo from '../components/logo'
 import { Navbar } from '../components/navbar'
 
@@ -22,10 +24,15 @@ export const Layout = ({ children, setIsOpen, isOpen }: Props) => {
           isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
         } `}
       >
-        <div className="md:sticky md:top-5">
-          <Logo />
-          <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
-        </div>
+        <section className="md:sticky md:top-0 pt-5 flex flex-col justify-between h-screen">
+          <div>
+            <Logo />
+            <Navbar isOpen={isOpen} setIsOpen={setIsOpen} />
+          </div>
+          <footer className="pb-8">
+            <FooterNavbar />
+          </footer>
+        </section>
         <div
           className="md:hidden text-5xl rounded-tl-full rounded-bl-full absolute top-[42%] right-0 bg-brand-primary text-white cursor-pointer z-50"
           onClick={() => setIsOpen(false)}
@@ -33,7 +40,7 @@ export const Layout = ({ children, setIsOpen, isOpen }: Props) => {
           <FiChevronLeft className="py-2" />
         </div>
       </aside>
-      <aside className="w-full flex flex-col px-6">{children}</aside>
+      <aside className="w-full flex flex-col px-6 dark:bg-black">{children}</aside>
     </section>
   )
 }

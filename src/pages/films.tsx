@@ -9,14 +9,12 @@ export const Films = ({ setMovieSelected, onOpenModal }: ModalActions) => {
   const { setData, responseData, setIsLoading, isLoading } = useData()
 
   useEffect(() => {
-    async function getMovies() {
-      const data = await getMoviesApi()
-
+    getMoviesApi().then(data => {
       setData(data)
       setIsLoading(false)
-    }
-    getMovies()
-  }, [setData, setIsLoading])
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   return (
     <>

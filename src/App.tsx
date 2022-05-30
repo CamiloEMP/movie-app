@@ -42,11 +42,18 @@ function App() {
             {isLoading ? (
               <Loader />
             ) : (
-              <MoviesCards
-                movieData={queryData?.results}
-                setMovieSelected={setMovieSelected}
-                onOpenModal={openModal}
-              />
+              <>
+                <MoviesCards
+                  movieData={queryData?.results}
+                  setMovieSelected={setMovieSelected}
+                  onOpenModal={openModal}
+                />
+                {queryData?.results.length === 0 && (
+                  <p className="text-center font-bold text-gray-500 text-4xl">
+                    Ups, No results found for {query}
+                  </p>
+                )}
+              </>
             )}
           </>
         ) : (

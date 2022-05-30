@@ -12,22 +12,20 @@ export const Navbar = ({ isOpen, setIsOpen }: Sidebar) => {
   }
 
   return (
-    <nav className="mt-12 flex flex-col">
-      <section className="space-y-1">
-        <LinkItem
-          href="/"
-          icon={<VscHome className="text-3xl" />}
-          text="home"
-          onClick={handleClick}
-        />
-        <LinkItem
-          href="/films"
-          icon={<GiFilmSpool className="text-3xl" />}
-          text="films"
-          onClick={handleClick}
-        />
-        <Toggle />
-      </section>
+    <nav className="mt-12 flex flex-col gap-2">
+      <LinkItem
+        href="/"
+        icon={<VscHome className="text-3xl" />}
+        text="home"
+        onClick={handleClick}
+      />
+      <LinkItem
+        href="/films"
+        icon={<GiFilmSpool className="text-3xl" />}
+        text="films"
+        onClick={handleClick}
+      />
+      <Toggle />
     </nav>
   )
 }
